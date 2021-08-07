@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tipo de cambio</title>
+
+    <style>
+        td {
+            background-color: #E8E8E8;
+            padding: 5px;
+        }
+        table {
+            border-spacing: 5px;
+            border-collapse: separate;
+        }
+    </style>
+        
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js'>
+    </script>
+    <script>
+        $(function(){
+            $.ajax({
+                url : 'https://www.banxico.org.mx/SieAPIRest/service/v1/series/SF43718/datos/oportuno?token=b6dbeae4a9ab2bacd09a196d2e3f7451b1997bd2db9b7ba7109e41a9b1d29c8c',
+                jsonp : 'callback',
+                dataType : 'jsonp',
+                success : function(response) {
+                    var series = response.bmx.series;
+
+                    for (var i in series) {
+                        var serie=series[i];
+                        var reg='<tr><td>'+serie.titulo+'</td><td>'+serie.datos[0].fecha+'</td><td>'+serie.datos[0].dato+'</td>><tr>'
+                        $('#result').append(reg);
+                    }
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    
+    <title>Tipo de cambio</title>
+    <p>
+        <h1 style="text-align: center; background-color: black;"> <img class="alignnone wp-image-19864 size-thumbnail" src="https://polipropimex.com/wp-content/uploads/2019/05/cropped-poli.png" alt="logo" width="20%" height="100%"/></h1>
+    </p>
+    <h3 style="text-align: center;">Banxico</h3>
+   
+        <table id="result">
+
+        </table>
+        <hr />
+
+    <br>
+    <p style="text-align: center;" >
+        <a href="genesys.apps.ux@gmail.com">Contactanos para tus desarrollos</a>
+        <p style="text-align: center;">
+           genesys.apps.ux@gmail.com
+        </p>
+        <h2 style="text-align: center;"> <img class="alignnone wp-image-19617 size-medium"  src="" alt="logo" width="210" height="24.5" /> </h2>
+    </p>
+</body>
+</html>
